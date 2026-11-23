@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:imc_calculator/components/gender_selector.dart';
+import 'package:imc_calculator/components/height_selector.dart';
 
 class ImcHomeScreen extends StatefulWidget {
   const new({super.key});
@@ -14,7 +15,8 @@ class _ImcHomeScreenState extends State<ImcHomeScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GenderSelector()
+        GenderSelector(),
+        HeightSelector()
       ],
     );
   }

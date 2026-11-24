@@ -4,14 +4,17 @@ import 'package:imc_calculator/core/text_styles.dart';
 import 'package:material_ui/material_ui.dart';
 
 class GenderSelector extends StatefulWidget {
-  const new({super.key});
+
+  final String? gender;
+  final Function(String) onGenderChanged;
+
+  const GenderSelector({super.key, required this.gender, required this.onGenderChanged});
 
   @override
   State<GenderSelector> createState() => _GenderSelectorState();
 }
 
 class _GenderSelectorState extends State<GenderSelector> {
-  String? selectedGender;
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +22,12 @@ class _GenderSelectorState extends State<GenderSelector> {
       children: [
         Expanded(
           child: GestureDetector(
-            onTap: (){
-              setState(() {
-                selectedGender = "male";
-              });
-            },
+            onTap: (){ widget.onGenderChanged("male");},
             child: Padding(
               padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16, right: 8),
               child: Container(
                 decoration: BoxDecoration(
-                  color: selectedGender == 'male' ? AppColors.backgroundComponentSelected : AppColors.backgroundComponent,
+                  color: widget.gender == 'male' ? AppColors.backgroundComponentSelected : AppColors.backgroundComponent,
                   borderRadius: BorderRadius.circular(16)
                 ),
                 child: Padding(
@@ -45,16 +44,12 @@ class _GenderSelectorState extends State<GenderSelector> {
         ),
         Expanded(
           child: GestureDetector(
-            onTap: (){
-              setState(() {
-                selectedGender = 'female';
-              });
-            },
+            onTap: (){ widget.onGenderChanged("female"); },
             child: Padding(
               padding: const EdgeInsets.only(left: 8, top: 16, bottom: 16, right: 16),
               child: Container(
                 decoration: BoxDecoration(
-                  color: selectedGender == 'female' ? AppColors.backgroundComponentSelected : AppColors.backgroundComponent,
+                  color: widget.gender == 'female' ? AppColors.backgroundComponentSelected : AppColors.backgroundComponent,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Padding(
